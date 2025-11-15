@@ -9,15 +9,15 @@ Sugerimos o uso das seguintes ferramentas acessíveis: [FullCalendar](https://fu
 
 ## Informações do trabalho
 
-- Nome:
-- Matricula:
-- Proposta de projeto escolhida:
-- Breve descrição sobre seu projeto:
+- Nome: Francisco Maycon Lima Castro
+- Matricula: 900399
+- Proposta de projeto escolhida: Melhores Filmes de Cada Ano
+- Breve descrição sobre seu projeto: Os vencedores de Melhor Filme do Oscar de cada Ano
 
 **Print da tela com a implementação**
 
-<< Coloque aqui uma breve explicação da implementação feita nessa etapa>>
+Implementei um gráfico pizza da distribuição de gêneros dos filmes.
 
-<<  COLOQUE A IMAGEM TELA 1 AQUI >>
+![Img PC](/imgs-readme/screenshot2.png)
 
-<<  COLOQUE A IMAGEM TELA 2 AQUI >>
+![Img MOBILE](/imgs-readme/screenshot.png)

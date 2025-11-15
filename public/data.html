@@ -112,10 +112,8 @@ main {
   crossorigin="anonymous"
 ></script>
 
-<!-- CHART.JS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- SCRIPT DO GRÁFICO (usa a mesma lógica do index: loadCollection) -->
 <script>
   function renderGenreChart(filmes) {
     const genreCounts = {};
@@ -177,14 +175,11 @@ main {
     });
   }
 
-  // ESTA função é chamada pelo app.js depois de buscar o db.json.
-  // No index ela monta a lista, aqui ela só chama o gráfico.
   function loadCollection(filmes) {
     renderGenreChart(filmes);
   }
 </script>
 
-<!-- MESMO JS DO INDEX, QUE JÁ BUSCA O db.json DO JEITO CERTO -->
 <script src="/assets/js/app.js"></script>
 
 </body>
