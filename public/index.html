@@ -6,78 +6,123 @@
     <title>Gloscars - Os Melhores Filmes de Cada Ano</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
+<style>
+header {
+    display: grid;
+    grid-template-columns: 180px 1fr 60px; /* cada parametro determina um elemento: logo 200px, nav 1fr (1 fração//oq sobrar), 56px para a pesquisa */
+    align-items: center;
+    gap: var(--gap);
+    padding: var(--gap);
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+    header::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 180px;
+    pointer-events: none;
+    z-index: -1;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.25) 50%,
+        rgba(0,0,0,0) 100%
+    );
+}
+</style>
 <body class="bg-black text-white">
+    <!-- HEADER -->
     <header>
         <div class="logo">
-            <img src="/assets/img/logo.svg" style="max-width: 180px;">
+            <img src="/assets/img/logo.svg" style="max-width: 180px; filter: brightness(50)">
         </div>
-
     </header>
-    <main>
 
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-  <div class="carousel-inner rounded-3">
-    <div class="carousel-item active">
-      <a href="/detalhes.html?y=2024"><img src="/assets/img/2024-main.webp" class="d-block w-100"></a>
-    </div>
-    <div class="carousel-item">
-      <a href="/detalhes.html?y=2023"><img src="/assets/img/2023-main.webp" class="d-block w-100"></a>
-    </div>
-    <div class="carousel-item">
-      <a href="/detalhes.html?y=2022"><img src="/assets/img/2022-main.webp" class="d-block w-100"></a>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-    <section class="content">
-        <!-- <aside class="filters">
-            <ul>
-                <li class="filter-item">FILTER 01</li>
-                <li class="filter-item">FILTER 02</li>
-                <li class="filter-item">FILTER 03</li>
-                <li class="filter-item">FILTER 04</li>
-            </ul>
-        </aside> -->
-        <div class="catalog">
-            <div class="title-box">
-                <h3>Os Melhores Filmes de Cada Ano</h3>
-                <span>2000 - 2024</span>
+    <!-- DIV CARROSSEL -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+        <!-- CARROSSEL DENTRO -->
+        <div class="carousel-inner rounded-3">
+            <div class="carousel-item active">
+            <a href="/detalhes.html?y=2024">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="/assets/img/2024-mobile.webp">
+                    <img src="/assets/img/2024-main.webp" class="d-block w-100">
+                </picture>
+            </a>
             </div>
-            <div class="collection-box">
-                <div class="collection-line" id="colLine">
+            <div class="carousel-item">
+            <a href="/detalhes.html?y=2023">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="/assets/img/2023-mobile.webp">
+                    <img src="/assets/img/2023-main.webp" class="d-block w-100">
+                </picture>
+            </a>
+            </div>
+            <div class="carousel-item">
+            <a href="/detalhes.html?y=2022">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="/assets/img/2022-mobile.webp">
+                    <img src="/assets/img/2022-main.webp" class="d-block w-100">
+                </picture>
+            </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <main>
+        <!-- LISTA DOS FILMES -->
+        <section class="content">
+            <div class="catalog">
+                <!-- TITULO -->
+                <div class="title-box">
+                    <h3>Os Melhores Filmes de Cada Ano</h3>
+                    <span>2000 - 2024</span>
+                </div>
+
+                <!-- FILMES -->
+                <div class="collection-box">
+                    <div class="collection-line" id="colLine">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </main>
+
     <footer>
+    <div class="footer-wrapper">
         <div class="footer-col">
-            <span><strong>Sobre: </strong><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia est, excepturi exercitationem deserunt in, expedita, quis sit iure architecto consequuntur reprehenderit modi quam. Asperiores corporis quidem aliquid eligendi. Nulla asperiores minima aliquid maxime velit a atque numquam quisquam maiores non, recusandae, culpa vitae fuga sequi? Aut maiores nihil porro officia?</span>
+            <h4>Sobre o Gloscars</h4>
+            <p>O Gloscars traz os melhores filmes de cada ano, reunindo clássicos e novidades do cinema mundial para você explorar e se inspirar.</p>
         </div>
         <div class="footer-col">
             <div class="footer-infos2">
-                <span>
-                    <strong>Aluno: </strong>Fracisco<br>
-                    <strong>Curso: </strong>Engenharia de Software<br>
-                    <strong>Turma: </strong>Noite<br>
-                </span>
+                <h4>Informações</h4>
+                <p>
+                    <strong>Aluno:</strong> Francisco<br>
+                    <strong>Curso:</strong> Engenharia de Software<br>
+                    <strong>Turma:</strong> Noite
+                </p>
             </div>
             <div class="footer-infos2">
-                <ul style="display: flex; gap: 30px; margin-top: 10px;">
+                <h4>Redes Sociais</h4>
+                <ul>
                     <li><a href="https://facebook.com/">Facebook</a></li>
                     <li><a href="https://instagram.com/">Instagram</a></li>
                 </ul>
             </div>
         </div>
+    </div>
     </footer>
+<!-- SCRIPTS ABAIXO -->    
 <script src="/assets/js/app.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
