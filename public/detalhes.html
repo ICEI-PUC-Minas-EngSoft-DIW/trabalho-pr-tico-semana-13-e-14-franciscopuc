@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gloscars - Detalhes do Filme</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="bg-black text-white">
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="/assets/img/logo.svg" style="max-width: 180px;">
+    </a>
+  </div>
+</header>
+
+<main>
+  <section id="detalhes"></section>
+  
+<div>
+  <h3 style=" margin-bottom: 20px; margin-top: 15px; ">Outros que podem te interessar: </h3>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner" id="carousel-inner"></div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" style=" background: linear-gradient( 90deg, black, transparent); ">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" style=" background: linear-gradient( 270deg, black, transparent); ">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+</main>
+    <footer>
+        <div class="footer-col">
+            <span><strong>Sobre: </strong><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia est, excepturi exercitationem deserunt in, expedita, quis sit iure architecto consequuntur reprehenderit modi quam. Asperiores corporis quidem aliquid eligendi. Nulla asperiores minima aliquid maxime velit a atque numquam quisquam maiores non, recusandae, culpa vitae fuga sequi? Aut maiores nihil porro officia?</span>
+        </div>
+        <div class="footer-col">
+            <div class="footer-infos2">
+                <span>
+                    <strong>Aluno: </strong>Fracisco<br>
+                    <strong>Curso: </strong>Engenharia de Software<br>
+                    <strong>Turma: </strong>Noite<br>
+                </span>
+            </div>
+            <div class="footer-infos2">
+                <ul style="display: flex; gap: 30px; margin-top: 10px;">
+                    <li><a href="https://facebook.com/">Facebook</a></li>
+                    <li><a href="https://instagram.com/">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+  let filmes = [];
+
+  fetch('http://localhost:3000/filmes')
+  .then(res => res.json())
+  .then(
+      data => {
+        filmes = data;
+        loadCollection(filmes);
+      }
+  )
+
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  function loadCollection(filmes) {
+    const ano = getQueryParam('y');
+    const filme = filmes.find(f => f.ano == ano);
+
+    if (!filme) {
+      document.getElementById('detalhes').innerHTML = "<p>Filme não encontrado.</p>";
+      return;
+    }
+
+    let html = `
+      <div style="display: flex; flex-direction: column;">
+        <h1 style="margin-bottom: 25px;">${filme.titulo} (${filme.lancamento})</h1>
+        <div class="detalhes-box">
+          <img src="${filme.poster}" alt="${filme.titulo}" style="max-width: 300px; height: 100%; border-radius: var(--radius)">
+          <div class="info">
+            <p><strong>Diretor:</strong> ${filme.diretor}</p>
+            <p><strong>Roteiro:</strong> ${filme.roteiro}</p>
+            <p><strong>Elenco:</strong> ${filme.elenco.join(", ")}</p>
+            <p><strong>Gênero:</strong> ${filme.genero.join(", ")}</p>
+            <p><strong>Duração:</strong> ${filme.duracao} min</p>
+            <p><strong>Nota IMDb:</strong> ${filme.imdb}</p>
+            <p><strong>Sinopse:</strong> ${filme.sinopse}</p>
+            <a href="${filme.trailer}" target="_blank" style="text-decoration: none;font-style: italic;color: #c4c4c4;">Ver Trailer</a>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('detalhes').innerHTML = html;
+
+    loadCol(filme.ano);
+  }
+
+  function loadCol(anoAtual) {
+    let html = "";
+    let carousel = document.querySelector("#carousel-inner");
+    if (!carousel) return;
+
+    let porSlide = 4;
+    if(window.innerWidth > 500 && window.innerWidth < 768) {
+      porSlide = 2;
+    } else if(window.innerWidth <= 500) {
+      porSlide = 1;
+    }
+
+    let lista = [];
+    for (let i = 0; i < filmes.length; i++) {
+      if (filmes[i].ano != anoAtual) {
+        lista.push(filmes[i]);
+      }
+    }
+
+    let contador = 0;
+    for (let i = 0; i < lista.length; i++) {
+
+      if (contador == 0) {
+        html += `<div class="carousel-item ${i == 0 ? "active" : ""}">
+                  <div class="collection-line">`;
+      }
+
+      html +=`<div class="collection-item"> <a href="/detalhes.html?y=${lista[i].ano}">
+        <img src="${lista[i].poster}" alt="${lista[i].titulo}" class="poster rounded-3">
+            </a></div>`;
+
+      contador++;
+
+    if (contador == porSlide) {
+        html += `</div></div>`;
+        contador = 0;
+      }
+    }
+    if (contador != 0) {
+      html += `</div></div>`;
+    }
+    carousel.innerHTML = html;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gloscars - Os Melhores Filmes de Cada Ano</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="bg-black text-white">
+    <header>
+        <div class="logo">
+            <img src="/assets/img/logo.svg" style="max-width: 180px;">
+        </div>
+
+    </header>
+    <main>
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner rounded-3">
+    <div class="carousel-item active">
+      <a href="/detalhes.html?y=2024"><img src="/assets/img/2024-main.webp" class="d-block w-100"></a>
+    </div>
+    <div class="carousel-item">
+      <a href="/detalhes.html?y=2023"><img src="/assets/img/2023-main.webp" class="d-block w-100"></a>
+    </div>
+    <div class="carousel-item">
+      <a href="/detalhes.html?y=2022"><img src="/assets/img/2022-main.webp" class="d-block w-100"></a>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+    <section class="content">
+        <!-- <aside class="filters">
+            <ul>
+                <li class="filter-item">FILTER 01</li>
+                <li class="filter-item">FILTER 02</li>
+                <li class="filter-item">FILTER 03</li>
+                <li class="filter-item">FILTER 04</li>
+            </ul>
+        </aside> -->
+        <div class="catalog">
+            <div class="title-box">
+                <h3>Os Melhores Filmes de Cada Ano</h3>
+                <span>2000 - 2024</span>
+            </div>
+            <div class="collection-box">
+                <div class="collection-line" id="colLine">
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+    <footer>
+        <div class="footer-col">
+            <span><strong>Sobre: </strong><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia est, excepturi exercitationem deserunt in, expedita, quis sit iure architecto consequuntur reprehenderit modi quam. Asperiores corporis quidem aliquid eligendi. Nulla asperiores minima aliquid maxime velit a atque numquam quisquam maiores non, recusandae, culpa vitae fuga sequi? Aut maiores nihil porro officia?</span>
+        </div>
+        <div class="footer-col">
+            <div class="footer-infos2">
+                <span>
+                    <strong>Aluno: </strong>Fracisco<br>
+                    <strong>Curso: </strong>Engenharia de Software<br>
+                    <strong>Turma: </strong>Noite<br>
+                </span>
+            </div>
+            <div class="footer-infos2">
+                <ul style="display: flex; gap: 30px; margin-top: 10px;">
+                    <li><a href="https://facebook.com/">Facebook</a></li>
+                    <li><a href="https://instagram.com/">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+<script src="/assets/js/app.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+    function loadCollection(filmes) {
+        colItem = '';
+        let colLine = document.getElementById('colLine');
+        for(let i = 0; i < filmes.length; i++) {
+            filme = filmes[i];
+            colItem += `<a href="/detalhes.html?y=${filme.ano}"><div class="collection-item">
+                            <img src="${filme.poster}" class="poster" style="max-width: 100%; border-radius: var(--radius);"></img>
+                        </div></a>`
+        }
+        colLine.innerHTML = colItem
+    }
+</script>
+</body>
+</html>

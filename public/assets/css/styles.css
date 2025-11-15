@@ -1,0 +1,259 @@
+/* Estou aprendendo e fazendo // hoje meu aprendizado aqui é do uso de grids e calculos minimos e maximos */
+
+/* isso serve para remover as diferenças entre os navegadores */
+*, *::before, *::after {
+    box-sizing: border-box;    
+}
+
+/* já isso pra remover as margens padrão que vem no body */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* fontes e pagina */
+body {
+    font-family: "Inter"; /* Old: Arial, Helvetica, sans-serif */
+    color: #f0f0f0;
+    line-height: 1.3; /* tenho q lembrar sempre de pôr, serve pra legibilidade */
+}
+
+a {
+    text-decoration: none;
+}
+
+/* criacao de variaveis pra economizar tempo */
+:root {
+    --radius: 10px;
+    --border: 1.4px solid #333;
+    --gap: 16px;
+    --gap-big: calc(var(--gap)+20%); 
+    --container: 1200px; /* largura máxima que quero */
+}
+
+header, body > section, #container {
+    width: min(100% - 32px, var(--container)); /* Vai ser 100% de largura menos 32px até chegar em 1200px */    
+    margin-inline: auto; /* Margens dos lados: auto, ou seja, centralize */
+    /* é o msm q: max-width: 1200px; margin: 0 auto; padding: 0 16px; */
+}
+
+header {
+    display: grid;
+    grid-template-columns: 180px 1fr 60px; /* cada parametro determina um elemento: logo 200px, nav 1fr (1 fração//oq sobrar), 56px para a pesquisa */
+    align-items: center;
+    gap: var(--gap);
+    padding: var(--gap);
+    margin-top: 10px;
+}
+
+.logo, .nav-top, .search-bar {
+    border-radius: var(--radius);
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo { /* personalizar o logo */
+    font-weight: 800;
+    font-size: 30px;
+    color: #b39930;
+    /* padrao dos itens head */
+    border: none; /* eu pensei em tirar logo ali de cima e por tudo aq em baixo, mas vou simplesmente tirar o border */
+}
+
+.nav-top {
+    justify-content: center;
+    padding: 0 calc(var(--gap)*2)
+}
+
+.nav-col {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: clamp(30px, 8vw, 120px); /* clamp é aql negocio q escolho minimo, variavel e maximo  */
+}
+
+.nav-item {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.search-bar > svg > path {
+    fill:#b39930;
+}
+/* main */
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* body */
+.main-banner {
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: var(--border);
+    border-radius: var(--radius);
+    height: 150px;
+    margin-bottom: var(--gap);
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr; /* 180px, msm largura da logo pro filtro e o resto pro catalogo */
+    gap: var(--gap);
+}
+
+.filters {
+    border-radius: var(--radius);
+    border: var(--border);
+    padding: var(--gap);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filters > ul {
+    margin: 0px; /* tira as margens padrao dos ul */
+    padding: 0px; /* tira os padding padrao dos ul */
+    list-style: none;
+    gap: var(--gap);
+    display: flex;
+    flex-direction: column;
+}
+
+.title-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--gap);
+    margin: 0;
+}
+
+.catalog {
+    display: grid;
+    gap: var(--gap);
+}
+
+.collection-box {
+    display: grid;
+    gap: var(--gap);
+    grid-auto-flow: row;
+}
+
+.collection-line {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(4, 1fr);
+  align-items: stretch; /* garante mesma altura por linha */
+}
+
+.collection-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  min-height: 180px; 
+  text-align: center;
+  color: white;
+  border-radius: var(--radius);
+}
+
+.collection-item .poster {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* mantém proporção, sem cortar nem esticar */
+  display: block;
+}
+
+.detalhes-box {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* Footer */
+footer {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+    background-color: #2d2d2d;
+    color: #fff;
+    padding: 40px 20px;
+    margin-top: 60px;
+    align-items: center;
+    justify-content: center;
+}
+
+footer > ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 0; padding: 0;
+    margin-bottom: 30px;
+}
+
+footer > ul > li > a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Responsividade geral - CSS Puro */
+@media screen and (min-width: 500px) and (max-width: 768px) {
+    .detalhes-box {
+        flex-direction: column;
+    }
+    .collection-line, footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .main-banner {
+        height: 240px;
+    }
+    header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 20px;
+    }
+    .nav-top {
+        display: none;
+    }
+}
+@media screen and (max-width: 500px) {
+    .detalhes-box {
+        flex-direction: column;
+    }
+    .collection-line, .content, footer {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    /* aside {
+        display: none !important;
+    } */
+    .main-banner {
+        height: 220px;
+    }
+    header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 20px;
+    }
+    .nav-top {
+        display: none;
+    }
+}
