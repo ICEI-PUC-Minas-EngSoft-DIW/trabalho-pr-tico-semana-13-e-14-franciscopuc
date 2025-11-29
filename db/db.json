@@ -1,18 +1,614 @@
 {
+  "filmes": [
+    {
+      "ano": 2024,
+      "titulo": "Oppenheimer",
+      "poster": "/assets/img/2024.webp",
+      "trailer": "https://www.youtube.com/watch?v=hPIzgZ16oac",
+      "lancamento": 2023,
+      "sinopse": "A biografia de J. Robert Oppenheimer, físico responsável pela criação da bomba atômica no Projeto Manhattan.",
+      "diretor": "Christopher Nolan",
+      "roteiro": "Christopher Nolan",
+      "elenco": [
+        "Cillian Murphy",
+        "Emily Blunt",
+        "Robert Downey Jr."
+      ],
+      "genero": [
+        "Drama",
+        "História"
+      ],
+      "duracao": 180,
+      "imdb": 8.3,
+      "id": "5fec",
+      "favorite": 0
+    },
+    {
+      "ano": 2023,
+      "titulo": "Tudo em Todo Lugar ao Mesmo Tempo",
+      "poster": "/assets/img/2023.webp",
+      "trailer": "https://www.youtube.com/watch?v=wxN1T1uxQ2g",
+      "lancamento": 2022,
+      "sinopse": "Uma imigrante chinesa descobre que pode acessar versões alternativas de sua vida para combater uma ameaça interdimensional.",
+      "diretor": "Daniel Kwan, Daniel Scheinert",
+      "roteiro": "Daniel Kwan, Daniel Scheinert",
+      "elenco": [
+        "Michelle Yeoh",
+        "Ke Huy Quan",
+        "Jamie Lee Curtis"
+      ],
+      "genero": [
+        "Ficção",
+        "Aventura",
+        "Comédia"
+      ],
+      "duracao": 139,
+      "imdb": 7.9,
+      "id": "d3a5",
+      "favorite": 1
+    },
+    {
+      "ano": 2022,
+      "titulo": "CODA: No Ritmo do Coração",
+      "poster": "/assets/img/2022.webp",
+      "trailer": "https://www.youtube.com/watch?v=ASc5Fdx0zLI",
+      "lancamento": 2021,
+      "sinopse": "Filha ouvinte em uma família surda enfrenta a escolha entre seguir carreira musical ou ajudar no sustento da família.",
+      "diretor": "Sian Heder",
+      "roteiro": "Sian Heder",
+      "elenco": [
+        "Emilia Jones",
+        "Troy Kotsur",
+        "Marlee Matlin"
+      ],
+      "genero": [
+        "Drama",
+        "Comédia"
+      ],
+      "duracao": 111,
+      "imdb": 8,
+      "id": "c4f8",
+      "favorite": 1
+    },
+    {
+      "ano": 2021,
+      "titulo": "Nomadland",
+      "poster": "/assets/img/2021.webp",
+      "trailer": "https://www.youtube.com/watch?v=Wwi3Lq4O0l0",
+      "lancamento": 2020,
+      "sinopse": "Após a falência de sua cidade, uma mulher viaja pelos EUA vivendo como nômade em uma van.",
+      "diretor": "Chloé Zhao",
+      "roteiro": "Chloé Zhao",
+      "elenco": [
+        "Frances McDormand",
+        "David Strathairn"
+      ],
+      "genero": [
+        "Drama"
+      ],
+      "duracao": 108,
+      "imdb": 7.3,
+      "id": "d924",
+      "favorite": 0
+    },
+    {
+      "ano": 2020,
+      "titulo": "Parasita",
+      "poster": "/assets/img/2020.webp",
+      "trailer": "https://www.youtube.com/watch?v=5xH0HfJHsaY",
+      "lancamento": 2019,
+      "sinopse": "Família pobre se infiltra na casa de uma rica, mas diferenças sociais levam a consequências inesperadas.",
+      "diretor": "Bong Joon-ho",
+      "roteiro": "Bong Joon-ho, Han Jin-won",
+      "elenco": [
+        "Song Kang-ho",
+        "Cho Yeo-jeong",
+        "Lee Sun-kyun"
+      ],
+      "genero": [
+        "Drama",
+        "Thriller"
+      ],
+      "duracao": 132,
+      "imdb": 8.5,
+      "id": "49be"
+    },
+    {
+      "ano": 2019,
+      "titulo": "Green Book: O Guia",
+      "poster": "/assets/img/2019.webp",
+      "trailer": "https://www.youtube.com/watch?v=jdlzE7klSxg",
+      "lancamento": 2018,
+      "sinopse": "Pianista negro contrata motorista ítalo-americano para turnê no sul dos EUA dos anos 60.",
+      "diretor": "Peter Farrelly",
+      "roteiro": "Nick Vallelonga, Brian Currie, Peter Farrelly",
+      "elenco": [
+        "Viggo Mortensen",
+        "Mahershala Ali"
+      ],
+      "genero": [
+        "Drama",
+        "Biografia"
+      ],
+      "duracao": 130,
+      "imdb": 8.2,
+      "id": "ef9e",
+      "favorite": 1
+    },
+    {
+      "ano": 2018,
+      "titulo": "A Forma da Água",
+      "poster": "/assets/img/2018.webp",
+      "trailer": "https://www.youtube.com/watch?v=Anwe1cazdqE",
+      "lancamento": 2017,
+      "sinopse": "Funcionária de laboratório estabelece ligação secreta com criatura aquática mantida em cativeiro pelo governo.",
+      "diretor": "Guillermo del Toro",
+      "roteiro": "Guillermo del Toro, Vanessa Taylor",
+      "elenco": [
+        "Sally Hawkins",
+        "Michael Shannon",
+        "Octavia Spencer"
+      ],
+      "genero": [
+        "Fantasia",
+        "Romance",
+        "Drama"
+      ],
+      "duracao": 123,
+      "imdb": 7.3,
+      "id": "7041",
+      "favorite": 1
+    },
+    {
+      "ano": 2017,
+      "titulo": "Moonlight: Sob a Luz do Luar",
+      "poster": "/assets/img/2017.webp",
+      "trailer": "https://www.youtube.com/watch?v=9NJj12tJzqc",
+      "lancamento": 2016,
+      "sinopse": "Acompanhe três fases da vida de um jovem negro em Miami, lidando com identidade e sexualidade.",
+      "diretor": "Barry Jenkins",
+      "roteiro": "Barry Jenkins, Tarell Alvin McCraney",
+      "elenco": [
+        "Mahershala Ali",
+        "Trevante Rhodes",
+        "Naomie Harris"
+      ],
+      "genero": [
+        "Drama"
+      ],
+      "duracao": 111,
+      "imdb": 7.4,
+      "id": "0394",
+      "favorite": 1
+    },
+    {
+      "ano": 2016,
+      "titulo": "Spotlight: Segredos Revelados",
+      "poster": "/assets/img/2016.webp",
+      "trailer": "https://www.youtube.com/watch?v=yXymzwz0V2g",
+      "lancamento": 2015,
+      "sinopse": "Equipe jornalística de Boston revela escândalo de abuso sexual envolvendo padres e Igreja Católica.",
+      "diretor": "Tom McCarthy",
+      "roteiro": "Josh Singer, Tom McCarthy",
+      "elenco": [
+        "Mark Ruffalo",
+        "Michael Keaton",
+        "Rachel McAdams"
+      ],
+      "genero": [
+        "Drama",
+        "Biografia"
+      ],
+      "duracao": 129,
+      "imdb": 8.1,
+      "id": "b41e",
+      "favorite": 0
+    },
+    {
+      "ano": 2015,
+      "titulo": "Birdman ou (A Inesperada Virtude da Ignorância)",
+      "poster": "/assets/img/2015.webp",
+      "trailer": "https://www.youtube.com/watch?v=egYzOALlYyU",
+      "lancamento": 2014,
+      "sinopse": "Ator decadente tenta montar peça na Broadway para recuperar carreira e autoestima.",
+      "diretor": "Alejandro G. Iñárritu",
+      "roteiro": "Alejandro G. Iñárritu, Nicolás Giacobone, Alexander Dinelaris Jr., Armando Bo",
+      "elenco": [
+        "Michael Keaton",
+        "Edward Norton",
+        "Emma Stone"
+      ],
+      "genero": [
+        "Comédia",
+        "Drama"
+      ],
+      "duracao": 119,
+      "imdb": 7.7,
+      "id": "4ca4",
+      "favorite": 1
+    },
+    {
+      "ano": 2014,
+      "titulo": "12 Anos de Escravidão",
+      "poster": "/assets/img/2014.webp",
+      "trailer": "https://www.youtube.com/watch?v=50fgGivGf6I",
+      "lancamento": 2013,
+      "sinopse": "Homem negro livre é sequestrado e vendido como escravo no sul dos EUA, em 1841.",
+      "diretor": "Steve McQueen",
+      "roteiro": "John Ridley",
+      "elenco": [
+        "Chiwetel Ejiofor",
+        "Lupita Nyong’o",
+        "Michael Fassbender"
+      ],
+      "genero": [
+        "Drama",
+        "História"
+      ],
+      "duracao": 134,
+      "imdb": 8.1,
+      "id": "2776"
+    },
+    {
+      "ano": 2013,
+      "titulo": "Argo",
+      "poster": "/assets/img/2013.webp",
+      "trailer": "https://www.youtube.com/watch?v=JW3WfSFgrVY",
+      "lancamento": 2012,
+      "sinopse": "Agente da CIA cria plano ousado para resgatar diplomatas durante crise do Irã em 1979.",
+      "diretor": "Ben Affleck",
+      "roteiro": "Chris Terrio",
+      "elenco": [
+        "Ben Affleck",
+        "Bryan Cranston",
+        "Alan Arkin"
+      ],
+      "genero": [
+        "Drama",
+        "Thriller"
+      ],
+      "duracao": 120,
+      "imdb": 7.7,
+      "id": "4866",
+      "favorite": 0
+    },
+    {
+      "ano": 2012,
+      "titulo": "O Artista",
+      "poster": "/assets/img/2012.webp",
+      "trailer": "https://www.youtube.com/watch?v=e72nme2ChOc",
+      "lancamento": 2011,
+      "sinopse": "Astro do cinema mudo vê carreira em declínio com chegada do som e enfrenta crise pessoal.",
+      "diretor": "Michel Hazanavicius",
+      "roteiro": "Michel Hazanavicius",
+      "elenco": [
+        "Jean Dujardin",
+        "Bérénice Bejo"
+      ],
+      "genero": [
+        "Drama",
+        "Romance"
+      ],
+      "duracao": 100,
+      "imdb": 7.9,
+      "id": "1190"
+    },
+    {
+      "ano": 2011,
+      "titulo": "O Discurso do Rei",
+      "poster": "/assets/img/2011.webp",
+      "trailer": "https://www.youtube.com/watch?v=gQ0R4HnNtpc",
+      "lancamento": 2010,
+      "sinopse": "Rei George VI luta contra gagueira com ajuda de terapeuta para discursar em tempos de guerra.",
+      "diretor": "Tom Hooper",
+      "roteiro": "David Seidler",
+      "elenco": [
+        "Colin Firth",
+        "Geoffrey Rush",
+        "Helena Bonham Carter"
+      ],
+      "genero": [
+        "Drama",
+        "História"
+      ],
+      "duracao": 118,
+      "imdb": 8,
+      "id": "e485"
+    },
+    {
+      "ano": 2010,
+      "titulo": "Guerra ao Terror",
+      "poster": "/assets/img/2010.webp",
+      "trailer": "https://www.youtube.com/watch?v=AIbFvqFYRT4",
+      "lancamento": 2008,
+      "sinopse": "Equipe de desarmadores de bombas no Iraque enfrenta missões letais e psicológicas durante a guerra.",
+      "diretor": "Kathryn Bigelow",
+      "roteiro": "Mark Boal",
+      "elenco": [
+        "Jeremy Renner",
+        "Anthony Mackie"
+      ],
+      "genero": [
+        "Guerra",
+        "Drama"
+      ],
+      "duracao": 131,
+      "imdb": 7.5,
+      "id": "96a7",
+      "favorite": 1
+    },
+    {
+      "ano": 2009,
+      "titulo": "Quem Quer Ser um Milionário?",
+      "poster": "/assets/img/2009.webp",
+      "trailer": "https://www.youtube.com/watch?v=WvNLT4sQDuw",
+      "lancamento": 2008,
+      "sinopse": "Jovem indiano pobre participa de quiz show e relembra momentos de sua vida a cada pergunta.",
+      "diretor": "Danny Boyle",
+      "roteiro": "Simon Beaufoy",
+      "elenco": [
+        "Dev Patel",
+        "Freida Pinto"
+      ],
+      "genero": [
+        "Drama",
+        "Romance"
+      ],
+      "duracao": 120,
+      "imdb": 8,
+      "id": "a50d",
+      "favorite": 0
+    },
+    {
+      "ano": 2008,
+      "titulo": "Onde os Fracos Não Têm Vez",
+      "poster": "/assets/img/2008.webp",
+      "trailer": "https://www.youtube.com/watch?v=A0oNrgumrlE",
+      "lancamento": 2007,
+      "sinopse": "Caçador encontra dinheiro de cartel, desencadeando perseguição mortal por assassino implacável.",
+      "diretor": "Joel e Ethan Coen",
+      "roteiro": "Joel e Ethan Coen",
+      "elenco": [
+        "Josh Brolin",
+        "Javier Bardem",
+        "Tommy Lee Jones"
+      ],
+      "genero": [
+        "Crime",
+        "Thriller"
+      ],
+      "duracao": 122,
+      "imdb": 8.2,
+      "id": "b159"
+    },
+    {
+      "ano": 2007,
+      "titulo": "Os Infiltrados",
+      "poster": "/assets/img/2007.webp",
+      "trailer": "https://www.youtube.com/watch?v=iQpb1LoeVUc",
+      "lancamento": 2006,
+      "sinopse": "Policial disfarçado e informante da máfia tentam expor um ao outro em Boston.",
+      "diretor": "Martin Scorsese",
+      "roteiro": "William Monahan",
+      "elenco": [
+        "Leonardo DiCaprio",
+        "Matt Damon",
+        "Jack Nicholson"
+      ],
+      "genero": [
+        "Crime",
+        "Thriller"
+      ],
+      "duracao": 151,
+      "imdb": 8.5,
+      "id": "6297"
+    },
+    {
+      "ano": 2006,
+      "titulo": "Crash: No Limite",
+      "poster": "/assets/img/2006.webp",
+      "trailer": "https://www.youtube.com/watch?v=Q3ahUiPnIvY",
+      "lancamento": 2005,
+      "sinopse": "Vidas em Los Angeles se entrelaçam em histórias sobre preconceito, violência e conexão humana.",
+      "diretor": "Paul Haggis",
+      "roteiro": "Paul Haggis, Robert Moresco",
+      "elenco": [
+        "Sandra Bullock",
+        "Don Cheadle",
+        "Matt Dillon"
+      ],
+      "genero": [
+        "Drama",
+        "Crime"
+      ],
+      "duracao": 112,
+      "imdb": 7.7,
+      "id": "e82e"
+    },
+    {
+      "ano": 2005,
+      "titulo": "Menina de Ouro",
+      "poster": "/assets/img/2005.webp",
+      "trailer": "https://www.youtube.com/watch?v=2FkyuKKtQqo",
+      "lancamento": 2004,
+      "sinopse": "Treinador relutante aceita treinar jovem determinada que sonha em se tornar boxeadora profissional.",
+      "diretor": "Clint Eastwood",
+      "roteiro": "Paul Haggis",
+      "elenco": [
+        "Hilary Swank",
+        "Clint Eastwood",
+        "Morgan Freeman"
+      ],
+      "genero": [
+        "Drama",
+        "Esporte"
+      ],
+      "duracao": 132,
+      "imdb": 8.1,
+      "id": "3f1c"
+    },
+    {
+      "ano": 2004,
+      "titulo": "O Senhor dos Anéis: O Retorno do Rei",
+      "poster": "/assets/img/2004.webp",
+      "trailer": "https://www.youtube.com/watch?v=y2rYRu8UW8M",
+      "lancamento": 2003,
+      "sinopse": "A batalha final pela Terra-média decide o destino do Um Anel e de seus portadores.",
+      "diretor": "Peter Jackson",
+      "roteiro": "Fran Walsh, Philippa Boyens, Peter Jackson",
+      "elenco": [
+        "Elijah Wood",
+        "Viggo Mortensen",
+        "Ian McKellen"
+      ],
+      "genero": [
+        "Fantasia",
+        "Aventura"
+      ],
+      "duracao": 201,
+      "imdb": 9,
+      "id": "ddff"
+    },
+    {
+      "ano": 2003,
+      "titulo": "Chicago",
+      "poster": "/assets/img/2003.webp",
+      "trailer": "https://www.youtube.com/watch?v=9EpaMmF9WVU",
+      "lancamento": 2002,
+      "sinopse": "Cantora e dançarina aspirante enfrentam julgamento por assassinato em meio ao showbiz dos anos 20.",
+      "diretor": "Rob Marshall",
+      "roteiro": "Bill Condon",
+      "elenco": [
+        "Renée Zellweger",
+        "Catherine Zeta-Jones",
+        "Richard Gere"
+      ],
+      "genero": [
+        "Musical",
+        "Comédia"
+      ],
+      "duracao": 113,
+      "imdb": 7.2,
+      "id": "b401",
+      "favorite": 1
+    },
+    {
+      "ano": 2002,
+      "titulo": "Uma Mente Brilhante",
+      "poster": "/assets/img/2002.webp",
+      "trailer": "https://www.youtube.com/watch?v=nIR3wj9Ssaw",
+      "lancamento": 2001,
+      "sinopse": "A vida do gênio matemático John Nash, que luta contra a esquizofrenia e tenta manter sua carreira e família.",
+      "diretor": "Ron Howard",
+      "roteiro": "Akiva Goldsman",
+      "elenco": [
+        "Russell Crowe",
+        "Jennifer Connelly",
+        "Ed Harris"
+      ],
+      "genero": [
+        "Drama",
+        "Biografia"
+      ],
+      "duracao": 135,
+      "imdb": 8.2,
+      "id": "613d"
+    },
+    {
+      "ano": 2001,
+      "titulo": "Gladiador",
+      "poster": "/assets/img/2001.webp",
+      "trailer": "https://www.youtube.com/watch?v=P5ieIbInFpg",
+      "lancamento": 2000,
+      "sinopse": "General romano busca vingança após ser traído e ver sua família assassinada por imperador corrupto.",
+      "diretor": "Ridley Scott",
+      "roteiro": "David Franzoni, John Logan, William Nicholson",
+      "elenco": [
+        "Russell Crowe",
+        "Joaquin Phoenix"
+      ],
+      "genero": [
+        "Ação",
+        "Drama"
+      ],
+      "duracao": 155,
+      "imdb": 8.5,
+      "id": "e07c",
+      "favorite": 0
+    },
+    {
+      "ano": 2000,
+      "titulo": "Beleza Americana",
+      "poster": "/assets/img/2000.webp",
+      "trailer": "https://www.youtube.com/watch?v=d5JjXsGBV3Y",
+      "lancamento": 1999,
+      "sinopse": "Homem de meia-idade vive crise existencial enquanto se apaixona pela amiga de sua filha adolescente.",
+      "diretor": "Sam Mendes",
+      "roteiro": "Alan Ball",
+      "elenco": [
+        "Kevin Spacey",
+        "Annette Bening",
+        "Thora Birch"
+      ],
+      "genero": [
+        "Drama"
+      ],
+      "duracao": 122,
+      "imdb": 8.3,
+      "id": "ee3f"
+    },
+    {
+      "ano": 1999,
+      "titulo": "Goog Working?",
+      "poster": "https://upload.wikimedia.org/wikipedia/pt/a/ae/Cocofilme.png",
+      "trailer": "https://google.com",
+      "lancamento": 1998,
+      "sinopse": "sdkjaghsdjhagshjdasasdasasdasd",
+      "diretor": "asdasdas",
+      "roteiro": "dasdasd",
+      "elenco": [
+        "asdasdasd"
+      ],
+      "genero": [
+        "asdasdasd"
+      ],
+      "duracao": 139,
+      "imdb": 9,
+      "id": "7dd5"
+    }
+  ],
   "usuarios": [
     {
       "id": "187cb7e5-e097-4224-8bc7-b610c855e2b1",
       "login": "admin",
       "senha": "123",
       "nome": "Administrador do Sistema",
-      "email": "admin@abc.com"
+      "email": "admin@abc.com",
+      "admin": 1
     },
     {
       "id": "ec37c83d-4b7f-458d-9e10-3fda7d37cd3e",
       "login": "user",
       "senha": "123",
       "nome": "Usuario Comum",
-      "email": "user@abc.com"
+      "email": "user@abc.com",
+      "admin": 0
+    },
+    {
+      "id": "171022ee-09b0-468a-962a-9c0772753cd0",
+      "login": "rommelcarneiro",
+      "senha": "12345",
+      "nome": "Rommel Carneiro",
+      "email": "rommel@abc.com",
+      "admin": 0
+    },
+    {
+      "id": "5cc7607b-8eb3-4074-bc89-892695a6d83e",
+      "login": "maycon",
+      "senha": "123",
+      "nome": "Maycon Castro",
+      "email": "maycaodamassa@gmail.com",
+      "admin": 1
     }
   ]
 }

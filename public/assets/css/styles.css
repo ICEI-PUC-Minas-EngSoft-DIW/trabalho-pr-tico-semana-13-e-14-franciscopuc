@@ -1,4 +1,4 @@
-/* Estou aprendendo e fazendo // hoje meu aprendizado aqui é do uso de grids e calculos minimos e maximos */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 /* isso serve para remover as diferenças entre os navegadores */
 *, *::before, *::after {
@@ -6,18 +6,12 @@
 }
 
 /* já isso pra remover as margens padrão que vem no body */
-html, body {
-    margin: 0;
-    padding: 0;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-/* fontes e pagina */
-body {
-    font-family: "Inter"; /* Old: Arial, Helvetica, sans-serif */
+html, body * {
+    font-family: "Inter", sans-serif; /* Old: Arial, Helvetica, sans-serif */
     color: #f0f0f0;
     line-height: 1.3; /* tenho q lembrar sempre de pôr, serve pra legibilidade */
+    margin: 0;
+    padding: 0;
 }
 
 a {
@@ -34,9 +28,127 @@ a {
 }
 
 header, body > section, #container {
-    width: min(100% - 32px, var(--container)); /* Vai ser 100% de largura menos 32px até chegar em 1200px */    
-    margin-inline: auto; /* Margens dos lados: auto, ou seja, centralize */
-    /* é o msm q: max-width: 1200px; margin: 0 auto; padding: 0 16px; */
+    width: min(100%, var(--container));
+    padding-inline: 16px; 
+    margin-inline: auto;
+}
+
+header {
+    /* display: grid;
+    grid-template-columns: 180px 1fr 120px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gap);
+    padding: var(--gap);
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.hamburguer {
+    display: none;
+    position: relative;
+    z-index: 10000; /* fica acima do nav ul */
+}
+.hamburguer a {
+    cursor: pointer;
+    font-size: 24px;
+    user-select: none;
+    text-decoration: none;
+    color: inherit;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.hamburguer .icon {
+    line-height: 0;
+    display: inline-block;
+}
+.hamburguer .icon-close {
+    display: none;
+}
+.hamburguer.menu-open .icon-open {
+    display: none;
+}
+.hamburguer.menu-open .icon-close {
+    display: inline-block;
+}
+nav {
+    justify-content: center;
+    padding: 0 calc(var(--gap)*2)
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: clamp(30px, 8vw, 120px); /* clamp é aql negocio q escolho minimo, variavel e maximo  */
+}
+nav ul li {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 9998;
+    display: none;
+}
+.menu-overlay.active {
+    display: block;
+}
+@media (max-width: 768px) { 
+    .hamburguer {
+        display: block;
+    }
+    .hamburguer.menu-open {
+        position: fixed;
+        top: var(--gap);
+        right: var(--gap);
+        z-index: 10001;
+        margin-top: var(--gap);
+    }
+    .hamburguer a {
+        cursor: pointer;
+        font-size: 24px;
+        user-select: none;
+    }
+    nav ul {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 45vw;
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: right;
+        backdrop-filter: blur(10px);
+        background: #00000070;
+        padding: 100px var(--gap) 20px;
+        margin: 0;
+        border-radius: 0;
+        gap: 20px;
+
+        /* fechado por padrão */
+        transform: translateX(100%);
+        z-index: 9999;
+    }
+
+    nav ul.open {
+        transform: translateX(0);
+    }
+
+    .mobile-logout {
+        margin-top: auto;
+        margin-bottom: calc(var(--gap) * 1.5);
+        padding-top: 20px;
+        border-top: 1px solid #444;
+        font-size: 14px;    
+        opacity: .9;
+    }
 }
 
 .carousel-item {
@@ -74,8 +186,16 @@ header, body > section, #container {
     );
 }
 
-.logo, .nav-top, .search-bar {
-    border-radius: var(--radius);
+@media (max-width: 500px) {
+  .logo img {
+    max-width: 140px; /* ou 120px */
+  }
+  header {
+    gap: 8px;
+  }
+}
+
+.logo {
     height: 60px;
     display: flex;
     justify-content: center;
@@ -90,27 +210,6 @@ header, body > section, #container {
     border: none; /* eu pensei em tirar logo ali de cima e por tudo aq em baixo, mas vou simplesmente tirar o border */
 }
 
-.nav-top {
-    justify-content: center;
-    padding: 0 calc(var(--gap)*2)
-}
-
-.nav-col {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    gap: clamp(30px, 8vw, 120px); /* clamp é aql negocio q escolho minimo, variavel e maximo  */
-}
-
-.nav-item {
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-}
-
-.search-bar > svg > path {
-    fill:#b39930;
-}
 /* main */
 main {
     display: flex;
@@ -192,6 +291,7 @@ main {
   text-align: center;
   color: white;
   border-radius: var(--radius);
+  position: relative;
 }
 
 .collection-item .poster {
@@ -255,6 +355,18 @@ footer .footer-infos2 ul li a:hover {
     color: #ffcc00;
 }
 
+/* Gráficos */
+.chart-wrapper {
+    position: relative;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.chart-wrapper canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .footer-wrapper {
@@ -289,31 +401,29 @@ footer .footer-infos2 ul li a:hover {
     .detalhes-box {
         flex-direction: column;
     }
-    .collection-line, footer {
+    footer {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
+    .collection-line {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
     .main-banner {
         height: 240px;
-    }
-    header {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        padding: 20px;
-    }
-    .nav-top {
-        display: none;
     }
 }
 @media screen and (max-width: 500px) {
     .detalhes-box {
         flex-direction: column;
     }
-    .collection-line, .content, footer {
+    .content, footer {
         display: grid;
         grid-template-columns: 1fr;
+    }
+    .collection-line {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
     /* aside {
         display: none !important;
@@ -321,14 +431,190 @@ footer .footer-infos2 ul li a:hover {
     .main-banner {
         height: 220px;
     }
-    header {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        padding: 20px;
-    }
-    .nav-top {
-        display: none;
-    }
+}
+
+.detalhes-title {
+    color: white !important;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+}
+
+.detalhes-content {
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.detalhes-poster {
+  width: 300px;
+  border-radius: var(--radius);
+  /* removido box-shadow conforme pedido */
+  flex-shrink: 0;
+}
+
+.generos {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.genero-label {
+  background-color: #444;
+  color: #ddd;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+
+.detalhes-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.detalhes-blocos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+  align-items: center;
+}
+
+.btn-trailer {
+  background-color: #b39930;
+  color: white !important;
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-style: normal;
+  transition: background-color 0.3s ease;
+  border: none;
+  height: 80px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.btn-trailer:hover {
+  background-color: #9a7e27;
+  color: #111 !important;
+  cursor: pointer;
+}
+
+.btn-trailer svg {
+  fill: white;
+  width: 20px;
+  height: 20px;
+}
+
+.bloco-vertical {
+  background-color: #222;
+  border-radius: var(--radius);
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+  user-select: none;
+  padding: 0 10px;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+.bloco-label {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #bbb;
+  font-weight: 700;
+  margin-bottom: 5px;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.bloco-valor {
+  font-size: 1.3rem;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.sinopse-section {
+  margin-bottom: 30px;
+}
+
+.sinopse-header {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #b39930;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.sinopse-text {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 600px;
+}
+
+.listas-info {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.lista-info strong {
+  display: block;
+  margin-bottom: 6px;
+  text-transform: capitalize;
+}
+
+.lista-info ul {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.lista-info li {
+  white-space: nowrap;
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+  .detalhes-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detalhes-poster {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 25px;
+  }
+
+  .detalhes-info {
+    width: 100%;
+  }
 }

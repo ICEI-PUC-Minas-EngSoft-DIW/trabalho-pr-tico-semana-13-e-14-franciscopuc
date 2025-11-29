@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gloscars - Detalhes do Filme</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script>
+  (()=>{
+    const logado = sessionStorage.getItem('isLoggedIn');
+        if (logado !== '1' || !logado) {
+            window.location.href = 'login.html';
+            return;
+        }
+    })();
+  document.addEventListener('DOMContentLoaded', () => {
+      const admin = JSON.parse(sessionStorage.getItem('usuarioCorrente') || '{}');
+
+      if (admin.admin === 0) {
+          // Se estiver na página de registro, bloqueia
+          if (window.location.pathname.endsWith('register.html')) {
+              alert('Acesso negado. Você não é um admin.');
+              window.location.href = 'index.html';
+          }
+
+          // Esconde o link de registro no menu
+          const regLink = document.querySelector('a[href="register.html"]');
+          if (regLink) regLink.style.display = 'none';
+      }
+  });
+  </script>
+  <style>
+    #formFilme input, #formFilme textarea {
+      background: #2d2d2d;
+      border: none;
+      color: white;
+    }
+    #formFilme, .movie-list ul {
+      max-width: 480px;
+      min-width: 480px;
+    }
+    @media (max-width: 768px) {
+      #formFilme, .movie-list ul {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+    @media (max-width: 1000px) {
+      .content {
+        grid-template-columns: 1fr !important;
+        gap: 40px;
+      }
+    }
+    .catalog, .movie-list {
+      justify-items: center;
+      align-content: center;
+    }
+    .content {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+    .list-group-item {
+        flex-wrap: wrap;
+    }
+    .list-group-item a {
+        flex-shrink: 1 !important;
+    }
+    .list-group-item > div {
+        min-width: 0 !important;
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+<header>
+    <a href="index.html"><div class="logo">
+        <img src="/assets/img/logo.svg" style="max-width: 180px; filter: brightness(50)">
+    </div></a>
+    <nav>
+        <ul id="menuList">
+            <a href="index.html" style="color: inherit; text-decoration: inherit;"><li>Início</li></a>
+            <a href="register.html" style="color: inherit; text-decoration: inherit;"><li>Cadastro</li></a>
+            <a href="favorites.html" style="color: inherit; text-decoration: inherit;"><li>Favorito</li></a>
+            <a href="login.html" style="color: inherit; text-decoration: inherit;" class="mobile-logout"><li>Logout</li></a>
+        </ul>
+    </nav>
+    <div class="hamburguer">
+        <a onclick="toggleMenu()" class="btn-mobile-menu">
+            <div class="icon icon-open">
+                <svg style="width: 30px; height: 30px; fill: white;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72"> <path d="M56 48c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 48 54.798 48 56 48zM56 32c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 32 54.798 32 56 32zM56 16c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 16 54.798 16 56 16z"></path> </svg>
+            </div>
+            <div class="icon icon-close">
+                <svg style="width: 23px;height: 23px;fill: white;margin-right: 3px;margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M 7 4 C 6.744125 4 6.4879687 4.0974687 6.2929688 4.2929688 L 4.2929688 6.2929688 C 3.9019687 6.6839688 3.9019687 7.3170313 4.2929688 7.7070312 L 11.585938 15 L 4.2929688 22.292969 C 3.9019687 22.683969 3.9019687 23.317031 4.2929688 23.707031 L 6.2929688 25.707031 C 6.6839688 26.098031 7.3170313 26.098031 7.7070312 25.707031 L 15 18.414062 L 22.292969 25.707031 C 22.682969 26.098031 23.317031 26.098031 23.707031 25.707031 L 25.707031 23.707031 C 26.098031 23.316031 26.098031 22.682969 25.707031 22.292969 L 18.414062 15 L 25.707031 7.7070312 C 26.098031 7.3170312 26.098031 6.6829688 25.707031 6.2929688 L 23.707031 4.2929688 C 23.316031 3.9019687 22.682969 3.9019687 22.292969 4.2929688 L 15 11.585938 L 7.7070312 4.2929688 C 7.5115312 4.0974687 7.255875 4 7 4 z"></path></svg>
+            </div>
+        </a>
+    </div>
+</header>
+
+<main>
+<section class="content">
+  <div class="catalog">
+    <!-- TITULO -->
+    <div class="title-box">
+      <h3>Cadastrar filme</h3>
+    </div>
+    <!-- CADASTRO -->
+    <form class="row g-3" id="formFilme">
+
+      <div class="col-md-3">
+        <label class="form-label">Ano</label>
+        <input type="number" class="form-control" id="ano" required min="1929" max="2026">
+        <div class="invalid-feedback">Informe um ano entre 1929 e 2026.</div>
+      </div>
+
+      <div class="col-md-9">
+        <label class="form-label">Título</label>
+        <input type="text" class="form-control" id="titulo" required>
+        <div class="invalid-feedback">O título é obrigatório.</div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Poster (URL)</label>
+        <input type="url" class="form-control" id="poster" required>
+        <div class="invalid-feedback">Informe um URL válido.</div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Trailer (URL)</label>
+        <input type="url" class="form-control" id="trailer" required>
+        <div class="invalid-feedback">Informe um URL válido.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Ano Lançamento</label>
+        <input type="number" class="form-control" id="lancamento" required min="1929" max="2026">
+        <div class="invalid-feedback">Ano deve estar entre 1929 e 2026.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Duração (min)</label>
+        <input type="number" class="form-control" id="duracao" required min="1" max="300">
+        <div class="invalid-feedback">Informe uma duração válida.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Nota IMDb</label>
+        <input type="number" class="form-control" id="imdb" required min="0" max="10" step="0.1">
+        <div class="invalid-feedback">A nota deve estar entre 0 e 10.</div>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Sinopse</label>
+        <textarea class="form-control" id="sinopse" rows="3" required minlength="30"></textarea>
+        <div class="invalid-feedback">A sinopse deve ter pelo menos 30 caracteres.</div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Diretor</label>
+        <input type="text" class="form-control" id="diretor" required>
+        <div class="invalid-feedback">O diretor é obrigatório.</div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Roteiro</label>
+        <input type="text" class="form-control" id="roteiro" required>
+        <div class="invalid-feedback">O roteiro é obrigatório.</div>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Elenco (separe por vírgulas)</label>
+        <input type="text" class="form-control" id="elenco" required>
+        <div class="invalid-feedback">Informe pelo menos um ator.</div>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Gênero (separe por vírgulas)</label>
+        <input type="text" class="form-control" id="genero" required>
+        <div class="invalid-feedback">Informe ao menos um gênero.</div>
+      </div>
+
+      <div class="col-12 mt-4"> 
+        <button type="submit" class="btn btn-primary w-100 pt-3 pb-3 border-0" style="background: #b39930">Salvar</button>
+      </div>
+    </form>
+  </div>
+  <div class="movie-list">
+    <!-- TITULO -->
+    <div class="title-box">
+      <h3>Lista de filmes</h3>
+    </div>
+    <!-- CADASTRO -->
+    <ul class="list-group g-3" id="list-group" style="margin-top: 20px;"></ul>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="footer-wrapper">
+    <div class="footer-col">
+      <h4>Sobre o Gloscars</h4>
+      <p>
+        O Gloscars traz os melhores filmes de cada ano, reunindo clássicos e novidades do cinema mundial para você explorar e se
+        inspirar.
+      </p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-infos2">
+        <h4>Informações</h4>
+        <p>
+          <strong>Aluno:</strong> Francisco<br />
+          <strong>Curso:</strong> Engenharia de Software<br />
+          <strong>Turma:</strong> Noite
+        </p>
+      </div>
+      <div class="footer-infos2">
+        <h4>Redes Sociais</h4>
+        <ul>
+          <li><a href="https://facebook.com/">Facebook</a></li>
+          <li><a href="https://instagram.com/">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+let editId = null; // variável global para saber se estamos editando
+function editItem(id) {
+  fetch(`/filmes/${id}`)
+    .then(res => res.json())
+    .then(filme => {
+      ano.value = filme.ano;
+      titulo.value = filme.titulo;
+      poster.value = filme.poster;
+      trailer.value = filme.trailer;
+      lancamento.value = filme.lancamento;
+      duracao.value = filme.duracao;
+      imdb.value = filme.imdb;
+      sinopse.value = filme.sinopse;
+      diretor.value = filme.diretor;
+      roteiro.value = filme.roteiro;
+      elenco.value = filme.elenco.join(", ");
+      genero.value = filme.genero.join(", ");
+      editId = id;
+
+      formFilme.querySelector("button[type='submit']").textContent = "Atualizar";
+    })
+    .catch(err => console.error("Erro ao buscar filme:", err));
+}
+function deleteItem(id) {
+  fetch(`/filmes/${id}`, {   // <-- corrigido aqui
+    method: "DELETE"
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Erro ao deletar item");
+      }
+      callMe(); // atualiza a lista
+    })
+    .catch(err => {
+      console.error("Erro:", err);
+    });
+}
+function callMe() {
+  fetch('/filmes').then(res => res.json()).then(data => {loadData(data);})
+  function loadData(filmes) {
+    let content = '';
+    filmes.forEach(function(filme, index) {
+      content += `<li class="list-group-item d-flex justify-content-between align-items-center" style="background: #333; color: white; border: 0; border-bottom: 1px solid #ffffff40;">
+          <div style="display: flex; flex-direction: row; gap: 15px">
+            <p style="margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${filme.ano}</p>
+            <p style="margin: 0; max-width: 20ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${filme.titulo}</p>         
+          </div>
+          <div style="display: flex; justify-content: flex-end; flex-direction: row; align-items: flex-end; gap: 5px;">
+            <a href="#" onclick="editItem('${filme.id}')"><span style="background: #b39930" class="badge badge-pill">EDITAR</span></a>
+            <a href="#" onclick="deleteItem('${filme.id}')"><span style="background: #b39930" class="badge badge-pill">EXCLUIR</span></a>
+          </div>
+        </li>`;
+    })
+    document.getElementById("list-group").innerHTML = content;
+  }
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("formFilme");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Ativa validação visual Bootstrap
+    if (!form.checkValidity()) {
+      form.classList.add("was-validated");
+      return;
+    }
+
+    // Monta JSON final
+    const novoFilme = {
+      ano: Number(ano.value),
+      titulo: titulo.value.trim(),
+      poster: poster.value.trim(),
+      trailer: trailer.value.trim(),
+      lancamento: Number(lancamento.value),
+      sinopse: sinopse.value.trim(),
+      diretor: diretor.value.trim(),
+      roteiro: roteiro.value.trim(),
+      elenco: elenco.value.split(",").map(x => x.trim()).filter(x => x.length > 0),
+      genero: genero.value.split(",").map(x => x.trim()).filter(x => x.length > 0),
+      duracao: Number(duracao.value),
+      imdb: Number(imdb.value)
+    };
+
+    let url = "/filmes";
+    let method = "POST";
+
+    if (editId) {
+      url += `/${editId}`;
+      method = "PUT";
+    }
+
+    fetch(url, {
+      method: method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(novoFilme)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(editId ? "Filme atualizado:" : "Filme salvo:", data);
+
+      let x = document.querySelectorAll(".form-control");
+      x.forEach(a => a.value = "");
+      editId = null;
+      formFilme.querySelector("button[type='submit']").textContent = "Salvar";
+
+      callMe();
+    })
+    .catch(err => console.error("Erro ao salvar:", err));
+
+  });
+});
+callMe();
+</script>
+<script src="/assets/js/app.js"></script>
+</body>
+</html>

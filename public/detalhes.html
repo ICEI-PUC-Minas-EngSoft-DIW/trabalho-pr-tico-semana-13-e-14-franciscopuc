@@ -4,207 +4,121 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gloscars - Detalhes do Filme</title>
-  <link rel="stylesheet" href="/assets/css/styles.css" />
-</head>
-<style>
-header {
-    display: grid;
-    grid-template-columns: 180px 1fr 60px; /* cada parametro determina um elemento: logo 200px, nav 1fr (1 fração//oq sobrar), 56px para a pesquisa */
-    align-items: center;
-    gap: var(--gap);
-    padding: var(--gap);
-    margin-top: 10px;
-    position: relative;
-}
-.detalhes-title {
-  color: white !important;
-  font-weight: 700;
-  font-size: 2.5rem;
-  margin-bottom: 8px;
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script>
+  (()=>{
+    const logado = sessionStorage.getItem('isLoggedIn');
+        if (logado !== '1' || !logado) {
+            window.location.href = 'login.html';
+            return;
+        }
+  })();
+  document.addEventListener('DOMContentLoaded', () => {
+      const admin = JSON.parse(sessionStorage.getItem('usuarioCorrente') || '{}');
+
+      if (admin.admin === 0) {
+          // Se estiver na página de registro, bloqueia
+          if (window.location.pathname.endsWith('register.html')) {
+              alert('Acesso negado. Você não é um admin.');
+              window.location.href = 'index.html';
+          }
+
+          // Esconde o link de registro no menu
+          const regLink = document.querySelector('a[href="register.html"]');
+          if (regLink) regLink.style.display = 'none';
+      }
+  });
+  </script>
+  <style>
+    .poster-wrapper {
+      position: relative; /* necessário para o overlay funcionar */
+      display: inline-block;
+  }
+
+.carousel {
+  overflow: hidden;
+  width: 100%;
 }
 
-.detalhes-content {
-  display: flex;
-  gap: 25px;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-}
-
-.detalhes-poster {
-  width: 300px;
-  border-radius: var(--radius);
-  /* removido box-shadow conforme pedido */
-  flex-shrink: 0;
-}
-
-.generos {
+.group {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  width: max-content; 
+  animation: scroll 35s linear infinite;
 }
 
-.genero-label {
-  background-color: #444;
-  color: #ddd;
-  font-size: 0.85rem;
-  padding: 4px 12px;
-  border-radius: 5px;
-  text-transform: capitalize;
+.c {
+  width: 160px;
+  height: auto;
+  flex: 0 0 auto;
+  display: flex;           
+  align-items: center;     
+  justify-content: center; 
+  overflow: hidden;
+  border-radius: 6px;
 }
 
-.detalhes-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.detalhes-blocos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-  gap: 15px;
-  margin-bottom: 25px;
-  align-items: center;
-}
-
-.btn-trailer {
-  background-color: #b39930;
-  color: white !important;
-  padding: 12px 18px;
-  border-radius: var(--radius);
-  font-weight: 600;
-  text-decoration: none !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-style: normal;
-  transition: background-color 0.3s ease;
-  border: none;
-  height: 80px;
-  min-width: 110px;
-  text-align: center;
-}
-
-.btn-trailer:hover {
-  background-color: #9a7e27;
-  color: #111 !important;
-  cursor: pointer;
-}
-
-.btn-trailer svg {
-  fill: white;
-  width: 20px;
-  height: 20px;
-}
-
-.bloco-vertical {
-  background-color: #222;
-  border-radius: var(--radius);
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: white;
-  user-select: none;
-  padding: 0 10px;
-  text-align: center;
-  overflow-wrap: break-word;
-}
-
-.bloco-label {
-  font-size: 0.65rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #bbb;
-  font-weight: 700;
-  margin-bottom: 5px;
-  white-space: normal;
+.c img {
+  max-height: 100%;
   max-width: 100%;
-}
-
-.bloco-valor {
-  font-size: 1.3rem;
-  font-weight: 700;
-  word-wrap: break-word;
-}
-
-.sinopse-section {
-  margin-bottom: 30px;
-}
-
-.sinopse-header {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #b39930;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.sinopse-text {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1rem;
-  line-height: 1.5;
-  max-width: 600px;
-}
-
-.listas-info {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.lista-info strong {
+  object-fit: contain;
   display: block;
-  margin-bottom: 6px;
-  text-transform: capitalize;
 }
 
-.lista-info ul {
-  display: flex;
-  gap: 10px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex-wrap: wrap;
-}
-
-.lista-info li {
-  white-space: nowrap;
-}
-
-/* Responsividade */
-
-@media (max-width: 768px) {
-  .detalhes-content {
-    flex-direction: column;
-    align-items: center;
+@keyframes scroll {
+  from {
+    transform: translateX(0);
   }
-
-  .detalhes-poster {
-    width: 100%;
-    max-width: 350px;
-    margin-bottom: 25px;
-  }
-
-  .detalhes-info {
-    width: 100%;
+  to {
+    transform: translateX(-50%); /* anda metade porque duplicamos */
   }
 }
-</style>
+.favorite-icon {
+border-radius: 50px;
+cursor: pointer;
+user-select: none;
+text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+align-items: center;
+display: flex;
+}
+.favorite-icon svg {
+    transition: transform 0.2s;
+    width: 20px;
+    fill: white;
+    margin-top: 7px;
+}
+#trfav {
+fill: #b39930;
+}
+.favorite-icon svg:hover {
+    transform: scale(1.05);
+}
+  </style>
+</head>
 <body class="bg-black text-white">
 <header>
-  <div class="logo">
-    <a href="index.html">
-      <img src="/assets/img/logo.svg" style="max-width: 180px; filter: brightness(50)"/>
-    </a>
-  </div>
+    <a href="index.html"><div class="logo">
+        <img src="/assets/img/logo.svg" style="max-width: 180px; filter: brightness(50)">
+    </div></a>
+    <nav>
+        <ul id="menuList">
+            <a href="index.html" style="color: inherit; text-decoration: inherit;"><li>Início</li></a>
+            <a href="register.html" style="color: inherit; text-decoration: inherit;"><li>Cadastro</li></a>
+            <a href="favorites.html" style="color: inherit; text-decoration: inherit;"><li>Favorito</li></a>
+            <a href="login.html" style="color: inherit; text-decoration: inherit;" class="mobile-logout"><li>Logout</li></a>
+        </ul>
+    </nav>
+
+    <div class="hamburguer">
+        <a onclick="toggleMenu()" class="btn-mobile-menu">
+            <div class="icon icon-open">
+                <svg style="width: 30px; height: 30px; fill: white;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72"> <path d="M56 48c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 48 54.798 48 56 48zM56 32c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 32 54.798 32 56 32zM56 16c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 16 54.798 16 56 16z"></path> </svg>
+            </div>
+            <div class="icon icon-close">
+                <svg style="width: 23px;height: 23px;fill: white;margin-right: 3px;margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M 7 4 C 6.744125 4 6.4879687 4.0974687 6.2929688 4.2929688 L 4.2929688 6.2929688 C 3.9019687 6.6839688 3.9019687 7.3170313 4.2929688 7.7070312 L 11.585938 15 L 4.2929688 22.292969 C 3.9019687 22.683969 3.9019687 23.317031 4.2929688 23.707031 L 6.2929688 25.707031 C 6.6839688 26.098031 7.3170313 26.098031 7.7070312 25.707031 L 15 18.414062 L 22.292969 25.707031 C 22.682969 26.098031 23.317031 26.098031 23.707031 25.707031 L 25.707031 23.707031 C 26.098031 23.316031 26.098031 22.682969 25.707031 22.292969 L 18.414062 15 L 25.707031 7.7070312 C 26.098031 7.3170312 26.098031 6.6829688 25.707031 6.2929688 L 23.707031 4.2929688 C 23.316031 3.9019687 22.682969 3.9019687 22.292969 4.2929688 L 15 11.585938 L 7.7070312 4.2929688 C 7.5115312 4.0974687 7.255875 4 7 4 z"></path></svg>
+            </div>
+        </a>
+    </div>
 </header>
 
 <main>
@@ -212,7 +126,7 @@ header {
 
   <div>
     <h3 style="margin-bottom: 20px; margin-top: 15px;">Outros que podem te interessar: </h3>
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner" id="carousel-inner"></div>
 
       <button
@@ -235,6 +149,9 @@ header {
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
+    </div> -->
+    <div class="carousel">
+      <div class="group"></div>
     </div>
   </div>
 </main>
@@ -280,8 +197,7 @@ header {
 ></script>
 <script>
   let filmes = [];
-
-  fetch("http://localhost:3000/filmes")
+  fetch("/filmes")
     .then((res) => res.json())
     .then((data) => {
       filmes = data;
@@ -294,8 +210,8 @@ header {
   }
 
   function loadCollection(filmes) {
-    const ano = getQueryParam("y");
-    const filme = filmes.find((f) => f.ano == ano);
+    const ano = getQueryParam("id");
+    const filme = filmes.find((f) => f.id == ano);
 
     if (!filme) {
       document.getElementById("detalhes").innerHTML = "<p>Filme não encontrado.</p>";
@@ -312,11 +228,17 @@ header {
 
     const html = `
       <div class="detalhes-content">
-        <img src="${filme.poster}" alt="${filme.titulo}" class="detalhes-poster" />
+          <img src="${filme.poster}" alt="${filme.titulo}" class="detalhes-poster" onerror="this.onerror=null; this.src='/assets/img/placeholder.png';"/>
 
         <div class="detalhes-info">
 
-          <h1 class="detalhes-title">${filme.titulo}</h1>
+          <h1 class="detalhes-title">
+            ${filme.titulo}
+            <div class="favorite-icon" onclick="toggleFavorite()">
+              <svg id="nofav" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><g><path d="M6.5 23.2c-.6 0-1.2-.2-1.7-.5-.8-.7-1.2-1.7-1-2.8l.8-4.6L1.2 12c-.8-.7-1-1.8-.7-2.9.3-1 1.2-1.8 2.3-1.9l4.7-.7 2.1-4.2c.5-.9 1.5-1.6 2.5-1.6 1.1 0 2 .6 2.5 1.6l2.1 4.2 4.6.7c1.1.2 1.9.9 2.3 1.9.3 1 .1 2.1-.7 2.9l-3.3 3.3.8 4.6c.2 1.1-.2 2.1-1.1 2.7s-2 .7-2.9.2L12 20.7l-4.2 2.2c-.3.2-.8.3-1.3.3zM12 1.8c-.7 0-1.3.4-1.6 1L8.2 7.2c-.1.2-.2.3-.4.3l-4.9.7c-.7.1-1.2.6-1.4 1.3s0 1.4.5 1.8l3.5 3.5c.1.1.2.3.1.4l-.8 4.9c-.1.7.2 1.4.7 1.8.5.3 1.3.4 1.9.1l4.4-2.3c.1-.1.3-.1.5 0l4.4 2.3c.6.3 1.4.3 1.9-.1.6-.4.8-1.1.7-1.8l-.8-4.9c0-.2 0-.3.1-.4l3.5-3.5c.5-.5.7-1.2.5-1.8-.2-.7-.8-1.1-1.5-1.2l-4.9-.7c-.2 0-.3-.1-.4-.3l-2.2-4.4c-.3-.7-.9-1.1-1.6-1.1z"></path></g></svg>
+              <svg id="trfav" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><g><path d="M17.5 23.3c-.5 0-.9-.1-1.3-.3L12 20.8 7.8 23c-.9.5-2.1.4-3-.2-.8-.7-1.3-1.7-1.1-2.8l.8-4.7L1.1 12C.3 11.3 0 10.2.4 9.1c.3-1 1.2-1.8 2.3-1.9l4.7-.7 2.1-4.3C10 1.2 11 .6 12 .6s2 .6 2.5 1.6l2.1 4.3 4.7.7c1.1.2 1.9.9 2.3 1.9.3 1 .1 2.1-.7 2.9l-3.4 3.3.8 4.7c.2 1.1-.2 2.1-1.1 2.8-.5.3-1.1.5-1.7.5z"></path></g></svg>
+            </div>
+          </h1>
 
           <div class="generos">${generosHtml}</div>
 
@@ -373,66 +295,83 @@ header {
 
     document.getElementById("detalhes").innerHTML = html;
 
-    loadCol(filme.ano);
+    if(filme.favorite == 1) {
+      document.getElementById("nofav").style.display = "none";
+      document.getElementById("trfav").style.display = "block";
+    } else if (filme.favorite == 0 || !filme.favorite) {
+      document.getElementById("nofav").style.display = "block";
+      document.getElementById("trfav").style.display = "none";
+    };
+
+    loadCol2(filme.ano);
   }
 
-  function loadCol(anoAtual) {
+
+function loadCol2(idAtual) {
   let html = "";
-  let carousel = document.querySelector("#carousel-inner");
+  let carousel = document.querySelector(".group");
   if (!carousel) return;
 
-  let porSlide = 4;
-  const width = window.innerWidth;
-  if (width <= 500) {
-    porSlide = 1;
-  } else if (width > 500 && width < 768) {
-    porSlide = 2;
-  } else {
-    porSlide = 4;
+  let lista = filmes.filter(f => f.id != idAtual);
+
+  for (let f of lista) {
+    html += `
+      <div class="c">
+        <a href="/detalhes.html?id=${f.id}">
+          <img src="${f.poster}"
+               alt="${f.titulo}"
+               onerror="this.onerror=null; this.src='/assets/img/placeholder.png';"
+               class="poster rounded-3">
+        </a>
+      </div>`;
   }
 
-  let lista = filmes.filter(f => f.ano != anoAtual);
-
-  let contador = 0;
-  for (let i = 0; i < lista.length; i++) {
-    if (contador === 0) {
-      html += `<div class="carousel-item ${i === 0 ? "active" : ""}">
-                  <div class="collection-line">`;
-    }
-
-    html += `<div class="collection-item">
-               <a href="/detalhes.html?y=${lista[i].ano}">
-                 <img src="${lista[i].poster}" alt="${lista[i].titulo}" class="poster rounded-3">
-               </a>
-             </div>`;
-
-    contador++;
-
-    if (contador === porSlide) {
-      html += `</div></div>`;
-      contador = 0;
-    }
-  }
-
-  // Fecha o último grupo caso não tenha fechado dentro do loop
-  if (contador !== 0) {
-    html += `</div></div>`;
-  }
-
-  carousel.innerHTML = html;
+  carousel.innerHTML = html + html;
 }
-
-// Chama loadCol ao carregar e ao redimensionar janela, sem recarregar página
-window.addEventListener('resize', () => {
-  const ano = getQueryParam('y');
-  if (ano) loadCol(ano);
-});
 
 // Também chama na inicialização para garantir o carregamento correto
 window.addEventListener('load', () => {
-  const ano = getQueryParam('y');
-  if (ano) loadCol(ano);
+  const idAtual = getQueryParam('id');
+  // if (ano) loadCol(ano);
+  if (idAtual) loadCol2(idAtual);
 });
+
+  function toggleFavorite() {
+    const ano = getQueryParam("id"); // pega o id do filme da URL
+    const filme = filmes.find(f => f.id == ano);
+    if (!filme) return;
+
+    // Alterna o valor do favorite
+    const novoValor = filme.favorite === 1 ? 0 : 1;
+
+    fetch(`/filmes/${filme.id}`, {
+      method: "PATCH", // só altera o campo necessário
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ favorite: novoValor })
+    })
+    .then(res => {
+      if (!res.ok) throw new Error("Erro ao atualizar favorito");
+      return res.json();
+    })
+    .then(updatedFilme => {
+      // Atualiza o array local para refletir a mudança
+      filme.favorite = updatedFilme.favorite;
+
+      // Atualiza o ícone visualmente
+      const icon = document.querySelector(".favorite-icon svg");
+      if (filme.favorite === 1) {
+        document.getElementById("nofav").style.display = "none";
+        document.getElementById("trfav").style.display = "block";
+      } else {
+        document.getElementById("nofav").style.display = "block";
+        document.getElementById("trfav").style.display = "none";
+      }
+    })
+    .catch(err => console.error(err));
+  }
 </script>
+<script src="/assets/js/app.js"></script>
 </body>
 </html>
